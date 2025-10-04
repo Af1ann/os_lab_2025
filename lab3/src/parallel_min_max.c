@@ -40,18 +40,23 @@ int main(int argc, char **argv) {
         switch (option_index) {
           case 0:
             seed = atoi(optarg);
-            // your code here
-            // error handling
+            if (seed <= 0){
+              printf("seed must be a positive number\n");
+              return 1;
+            }
             break;
           case 1:
             array_size = atoi(optarg);
-            // your code here
-            // error handling
+            if (array_size <= 0){
+              printf("array_size must be a positive number\n");
+              return 1;
+            }
             break;
           case 2:
             pnum = atoi(optarg);
-            // your code here
-            // error handling
+            if (pnum <= 0){
+              printf("pnum must be a positive number\n");
+            }
             break;
           case 3:
             with_files = true;
@@ -97,8 +102,11 @@ int main(int argc, char **argv) {
       // successful fork
       active_child_processes += 1;
       if (child_pid == 0) {
+        int chunk_size = array_size / pnum;
+        int start = i * chunk_size;
+        int end = (i == pnum - 1) ? array_size : (i + 1) * chunk_size;
         // child process
-
+        struct MinMax local_min_max = GetMinMax(array, start, end);
         // parallel somehow
 
         if (with_files) {
