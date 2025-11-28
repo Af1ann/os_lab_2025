@@ -59,14 +59,7 @@ int main(int argc, char **argv) {
     
     int option_index = 0;
     int opt;
-    while ((opt = getopt_long(argc, argv, "f", long_options, &option_index)) != -1) {
-        switch (opt) {
-            case 0:
-                if (strcmp(long_options[option_index].name, "seed") == 0) {
-                    seed = atoi(optarg);
-                } else if (strcmp(long_options[option_index].name, "array_size") == 0) {
-                    array_size = atoi(optarg);
-                } else if (strcmp(long_options[option_index].name, "pnum") == 0) {
+    while ((opt = getopt_long(argc, argv, "f", long_options, &option_index)) != -1) {./
                     pnum = atoi(optarg);
                 } else if (strcmp(long_options[option_index].name, "timeout") == 0) {
                     timeout = atoi(optarg);
